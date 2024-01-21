@@ -16,10 +16,18 @@ public class AppServiceController {
     @Value("${spring.application.name}")
     private String appName;
 
+    @Value("${spring.application.env}")
+    private String environment;
+
     @GetMapping("/status")
     public ResponseEntity<ApplicationStatus> status(){
         logger.info("Controller method called.");
         return ResponseEntity.ok(new ApplicationStatus(appName,200));
+    }
+
+    @GetMapping
+    public String info(){
+        return "This app is running on "+environment+ " environment";
     }
 
 }
